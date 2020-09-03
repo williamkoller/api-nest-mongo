@@ -16,7 +16,13 @@ export class UserService {
   }
 
   async findById (id: number) {
-    // ...
+    const user = await this.userModel.findById({ _id: id }).exec()
+    return user
+  }
+
+  async getAll () {
+    const results = await this.userModel.find({})
+    return results
   }
 
   async update (user: User) {
