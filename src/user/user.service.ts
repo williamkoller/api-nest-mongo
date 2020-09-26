@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common'
 import { InjectModel } from '@nestjs/mongoose'
 import { User } from './user.model'
 import { Model } from 'mongoose'
+import { MongoHelper } from 'src/helpers/mongo-helper'
 
 @Injectable()
 export class UserService {
@@ -22,7 +23,8 @@ export class UserService {
 
   async getAll () {
     const results = await this.userModel.find({})
-    return results
+    console.log(results)
+    return results && MongoHelper.map(results)
   }
 
   async update (user: User) {
